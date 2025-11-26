@@ -46,7 +46,8 @@ export const Home = () => {
     //Function to filter crypto list
     const filterSortCryptoList = () => {
         //Filter the crypto list by the search query
-        let filterd = cryptoList.filter((crypto) => crypto.name.toLowerCase().includes(searchQuery.toLowerCase()));
+        let filterd = cryptoList.filter((crypto) => crypto.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            crypto.symbol.toLowerCase().includes(searchQuery.toLowerCase()));
 
         //Sort the crypto list
         filterd.sort((a, b) => {
