@@ -7,6 +7,9 @@ export const Home = () => {
     const [cryptoList, setCryptoList] = useState([]);
     //State to store the loading state
     const [isLoading, setIsLoading] = useState(true);
+    //State to store the view mode
+    const [viewMode, setViewMode] = useState('grid');
+
 
     //Effect to fetch the crypto data
     useEffect(() => {
@@ -31,12 +34,20 @@ export const Home = () => {
     }
     return (
         <div className="app">
+            <div className="controls">
+                <div className="filter-group"></div>
+                <div className="view-toggle">
+                    <button className={viewMode === 'grid' ? 'active' : ''} onClick={() => setViewMode('grid')}>Grid</button>
+                    <button className={viewMode === 'list' ? 'active' : ''} onClick={() => setViewMode('list')}>List</button>
+                </div>
+            </div>
+            {/* Loading State */}
             {isLoading ? <div className='loading'>
                 <div className="spinner" />
                 <p>Loading crypto data...</p>
             </div> 
             : 
-            <div className="crypto-container">
+            <div className={`crypto-container ${viewMode}`}>
                 { cryptoList.map((crypto, key) => (
                     <CryptoCard crypto={crypto} key={key}/>
                 ))}
