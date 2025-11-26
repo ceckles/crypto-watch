@@ -22,7 +22,7 @@ export const Home = () => {
     //Effect to fetch the crypto data
     useEffect(() => {
         //Fetch the crypto data every 30 seconds
-        const interval = setInterval((fetchCryptoData), 30000);
+        const interval = setInterval((fetchCryptoData), 3000);
         return () => clearInterval(interval);
     }, []);
 
