@@ -21,8 +21,9 @@ export const Home = () => {
 
     //Effect to fetch the crypto data
     useEffect(() => {
-        //Fetch the crypto data
-        fetchCryptoData();
+        //Fetch the crypto data every 30 seconds
+        const interval = setInterval((fetchCryptoData), 30000);
+        return () => clearInterval(interval);
     }, []);
 
     //Effect to filter and sort the crypto list
@@ -120,6 +121,9 @@ export const Home = () => {
                         <CryptoCard crypto={crypto} key={key} />
                     ))}
                 </div>}
+            <footer className="footer">
+                <p>Data provided by CoinGecko API • Updated every 30 seconds</p>
+            </footer>
         </div>
     )
 };
