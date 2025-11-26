@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchCrypto } from '../api/coinGecko';
 import CryptoCard from '../components/CryptoCard';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const Home = () => {
     //State to store the crypto list
@@ -15,6 +16,8 @@ export const Home = () => {
     const [sortBy, setSortBy] = useState('market_cap_rank');
     //State to store the search query
     const [searchQuery, setSearchQuery] = useState('');
+    //Theme context
+    const { theme, toggleTheme } = useTheme();
 
     //Effect to fetch the crypto data
     useEffect(() => {
@@ -81,6 +84,11 @@ export const Home = () => {
                     </div>
                     <div className="search-section">
                         <input type="text" placeholder="Search for a crypto" className="search-input" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                    </div>
+                    <div className="theme-toggle">
+                        <button className="theme-toggle-btn" onClick={toggleTheme} aria-label="Toggle theme">
+                            {theme === 'dark' ? '☀️' : '🌙'}
+                        </button>
                     </div>
                 </div>
             </header>
