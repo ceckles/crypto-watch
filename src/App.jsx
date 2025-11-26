@@ -1,7 +1,16 @@
-
+import { BrowserRouter, Routes, Route } from 'react-router'
+import { Home } from './pages/Home'
+import { CoinDetail } from './pages/CoinDetail'
 
 function App() {
-  return (<h1>Hello World</h1>)
+  return (
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/coin/:id" element={<CoinDetail />} />
+    </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App
