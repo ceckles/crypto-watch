@@ -13,7 +13,8 @@ export const Home = () => {
     const [viewMode, setViewMode] = useState('grid');
     //State to store the sort option
     const [sortBy, setSortBy] = useState('market_cap_rank');
-
+    //State to store the search query
+    const [searchQuery, setSearchQuery] = useState('');
 
     //Effect to fetch the crypto data
     useEffect(() => {
@@ -25,7 +26,7 @@ export const Home = () => {
     useEffect(() => {
         //Filter and sort the crypto list
         filterSortCryptoList();
-    }, [sortBy, cryptoList]);
+    }, [sortBy, cryptoList, searchQuery]);
 
     //Function to fetch the crypto data
     const fetchCryptoData = async () => {
@@ -44,32 +45,44 @@ export const Home = () => {
     }
     //Function to filter crypto list
     const filterSortCryptoList = () => {
-        //Create a copy of the crypto list
-        let filterd = [...cryptoList];
+        //Filter the crypto list by the search query
+        let filterd = cryptoList.filter((crypto) => crypto.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
         //Sort the crypto list
-        filterd.sort((a,b)=>{
+        filterd.sort((a, b) => {
             //Sort by the sort option
-            switch(sortBy){
-            case "name":
-                return a.name.localeCompare(b.name);
-            case "price":
-                return a.current_price - b.current_price;
-            case "price_desc":
-                return b.current_price - a.current_price;
-            case "change":
-                return a.price_change_percentage_24 - b.price_change_percentage_24
-            case "market_cap":
-                return a.market_cap - b.market_cap;
-            default:
-                return a.market_cap_rank - b.market_cap_rank;
+            switch (sortBy) {
+                case "name":
+                    return a.name.localeCompare(b.name);
+                case "price":
+                    return a.current_price - b.current_price;
+                case "price_desc":
+                    return b.current_price - a.current_price;
+                case "change":
+                    return a.price_change_percentage_24 - b.price_change_percentage_24
+                case "market_cap":
+                    return a.market_cap - b.market_cap;
+                default:
+                    return a.market_cap_rank - b.market_cap_rank;
             }
         });
         //Set the filtered list
         setFilterdList(filterd);
     }
-    
+
     return (
         <div className="app">
+            <header className="header">
+                <div className="header-content">
+                    <div className="logo-section">
+                        <h1><span className="coin-emoji">🪙</span> Crypto Watch</h1>
+                        <p>Track cryptocurrencies in real-time</p>
+                    </div>
+                    <div className="search-section">
+                        <input type="text" placeholder="Search for a crypto" className="search-input" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                    </div>
+                </div>
+            </header>
             <div className="controls">
                 <div className="filter-group">
                     <label>Sort by:</label>
@@ -91,13 +104,13 @@ export const Home = () => {
             {isLoading ? <div className='loading'>
                 <div className="spinner" />
                 <p>Loading crypto data...</p>
-            </div> 
-            : 
-            <div className={`crypto-container ${viewMode}`}>
-                { filterdList.map((crypto, key) => (
-                    <CryptoCard crypto={crypto} key={key}/>
-                ))}
-            </div>}
+            </div>
+                :
+                <div className={`crypto-container ${viewMode}`}>
+                    {filterdList.map((crypto, key) => (
+                        <CryptoCard crypto={crypto} key={key} />
+                    ))}
+                </div>}
         </div>
     )
 };

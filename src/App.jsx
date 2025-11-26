@@ -5,10 +5,10 @@ import { CoinDetail } from './pages/CoinDetail'
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/coin/:id" element={<CoinDetail />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/coin/:id" element={<CoinDetail />} />
+      </Routes>
     </BrowserRouter>
   )
 }

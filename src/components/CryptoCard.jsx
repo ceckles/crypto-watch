@@ -16,8 +16,8 @@ export const CryptoCard = ({ crypto }) => {
             {/* Price and Change */}
             <div className="crypto-price">
                 <p className="price">{formatPrice(crypto.current_price)}</p>
-                <p className={`change ${crypto.price_change_percentage_24h >=0 ? 'positive' : 'negative'}`}>
-                    {crypto.price_change_percentage_24h >=0 ? '+ ' : '- '}
+                <p className={`change ${crypto.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}`}>
+                    {crypto.price_change_percentage_24h >= 0 ? '+ ' : '- '}
                     {Math.abs(crypto.price_change_percentage_24h).toFixed(2)}%
                 </p>
             </div>
@@ -32,7 +32,7 @@ export const CryptoCard = ({ crypto }) => {
                     <span className="stat-value">{formatMarketCap(crypto.total_volume)}</span>
                 </div>
             </div>
-            
+
         </div>)
 };
 

@@ -59,6 +59,12 @@ body {
   font-weight: 700;
 }
 
+.logo-section h1 .coin-emoji {
+  -webkit-text-fill-color: initial;
+  background: none;
+  filter: none;
+}
+
 .logo-section p {
   color: #a0a0b0;
   font-size: 0.95rem;
