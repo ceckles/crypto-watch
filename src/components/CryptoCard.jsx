@@ -1,7 +1,9 @@
+import { Link } from 'react-router';
 import { formatPrice, formatMarketCap } from '../utils/formatter';
 
 export const CryptoCard = ({ crypto }) => {
     return (
+        <Link to={`/coin/${crypto.id}`} style={{ textDecoration: 'none' }}>
         <div className="crypto-card">
             <div className="crypto-header">
                 <div className="crypto-info">
@@ -32,8 +34,7 @@ export const CryptoCard = ({ crypto }) => {
                     <span className="stat-value">{formatMarketCap(crypto.total_volume)}</span>
                 </div>
             </div>
-
-        </div>)
+        </div></Link>)
 };
 
 export default CryptoCard;

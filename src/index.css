@@ -32,6 +32,12 @@
   --shadow-color: rgba(0, 0, 0, 0.3);
   --shadow-hover: rgba(0, 0, 0, 0.5);
   --header-bg: rgba(20, 20, 40, 0.4);
+  --chart-grid-stroke: rgba(255, 255, 255, 0.1);
+  --chart-axis-stroke: #9ca3af;
+  --chart-tooltip-bg: rgba(20, 20, 40, 0.95);
+  --chart-tooltip-border: rgba(255, 255, 255, 0.1);
+  --chart-tooltip-text: #e0e0e0;
+  --chart-line-stroke: #add8e6;
 }
 
 /* Light Theme */
@@ -51,6 +57,12 @@
   --shadow-color: rgba(0, 0, 0, 0.1);
   --shadow-hover: rgba(0, 0, 0, 0.15);
   --header-bg: rgba(255, 255, 255, 0.8);
+  --chart-grid-stroke: rgba(0, 0, 0, 0.1);
+  --chart-axis-stroke: #86868b;
+  --chart-tooltip-bg: rgba(255, 255, 255, 0.95);
+  --chart-tooltip-border: rgba(0, 0, 0, 0.1);
+  --chart-tooltip-text: #1d1d1f;
+  --chart-line-stroke: #0071e3;
 }
 
 body {
@@ -531,6 +543,20 @@ body {
   border: 2px solid var(--accent-color);
   opacity: 0.7;
   transition: border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.coin-header h1 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.coin-header .symbol {
+  color: var(--text-tertiary);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .coin-title h1 {
