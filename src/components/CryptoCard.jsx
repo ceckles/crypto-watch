@@ -1,17 +1,22 @@
-export const CryptoCard = ({crypto}) =>{
+import { formatPrice } from '../utils/formatter';
+
+export const CryptoCard = ({ crypto }) => {
     return (
-    <div className="crypto-card">
-        <div className="crypto-header">
-            <div className="crypto-info">
-                <img src={crypto.image} alt={crypto.name} /> 
-                <div>
-                    <h3>{crypto.name}</h3>
-                    <p className="symbol">{crypto.symbol.toUpperCase()}</p>
-                    <span className="rank">Rank #{crypto.market_cap_rank}</span>
+        <div className="crypto-card">
+            <div className="crypto-header">
+                <div className="crypto-info">
+                    <img src={crypto.image} alt={crypto.name} />
+                    <div>
+                        <h3>{crypto.name}</h3>
+                        <p className="symbol">{crypto.symbol.toUpperCase()}</p>
+                        <span className="rank">Rank #{crypto.market_cap_rank}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>)
+            <div className="crypto-price">
+                <p className="price">{formatPrice(crypto.current_price)}</p>
+            </div>
+        </div>)
 };
 
 export default CryptoCard;
