@@ -117,7 +117,7 @@ export const CoinDetail = () => {
                 <div className="header-content">
                     <div className="logo-section">
                         <h1><span className="coin-emoji">🪙</span> Crypto Watch</h1>
-                        <p>Track cryptocurrencies in real-time</p>
+                        <p>Track crypto currencies in real-time</p>
                     </div>
                     <button className="back-button" onClick={() => navigate("/")}>Go Back</button>
                     <div className="theme-toggle">
