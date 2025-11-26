@@ -19,19 +19,6 @@ export const Home = () => {
     //Theme context
     const { theme, toggleTheme } = useTheme();
 
-    //Effect to fetch the crypto data
-    useEffect(() => {
-        //Fetch the crypto data every 30 seconds
-        const interval = setInterval((fetchCryptoData), 3000);
-        return () => clearInterval(interval);
-    }, []);
-
-    //Effect to filter and sort the crypto list
-    useEffect(() => {
-        //Filter and sort the crypto list
-        filterSortCryptoList();
-    }, [sortBy, cryptoList, searchQuery]);
-
     //Function to fetch the crypto data
     const fetchCryptoData = async () => {
         try {
@@ -47,6 +34,21 @@ export const Home = () => {
             setIsLoading(false);
         }
     }
+
+    //Effect to fetch the crypto data
+    useEffect(() => {
+        //Fetch the crypto data immediately on mount
+        fetchCryptoData();
+        //Then fetch the crypto data every 30 seconds
+        const interval = setInterval(fetchCryptoData, 30000);
+        return () => clearInterval(interval);
+    }, []);
+
+    //Effect to filter and sort the crypto list
+    useEffect(() => {
+        //Filter and sort the crypto list
+        filterSortCryptoList();
+    }, [sortBy, cryptoList, searchQuery]);
     //Function to filter crypto list
     const filterSortCryptoList = () => {
         //Filter the crypto list by the search query
