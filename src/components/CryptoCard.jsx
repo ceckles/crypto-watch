@@ -1,4 +1,4 @@
-import { formatPrice } from '../utils/formatter';
+import { formatPrice, formatMarketCap } from '../utils/formatter';
 
 export const CryptoCard = ({ crypto }) => {
     return (
@@ -13,8 +13,20 @@ export const CryptoCard = ({ crypto }) => {
                     </div>
                 </div>
             </div>
+            {/* Price and Change */}
             <div className="crypto-price">
                 <p className="price">{formatPrice(crypto.current_price)}</p>
+                <p className={`change ${crypto.price_change_percentage_24h >=0 ? 'positive' : 'negative'}`}>
+                    {crypto.price_change_percentage_24h >=0 ? '+ ' : '- '}
+                    {Math.abs(crypto.price_change_percentage_24h).toFixed(2)}%
+                </p>
+            </div>
+            {/* Stats */}
+            <div className="crypto-stats">
+                <div className="stat">
+                    <span className="stat-label">Market Cap</span>
+                    <span className="stat-value">{formatMarketCap(crypto.market_cap)}</span>
+                </div>
             </div>
         </div>)
 };
