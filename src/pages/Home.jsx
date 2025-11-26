@@ -37,10 +37,10 @@ export const Home = () => {
             </div> 
             : 
             <div className="crypto-container">
-                { cryptoList.map((crypto, key) =>{
+                { cryptoList.map((crypto, key) => (
                     <CryptoCard crypto={crypto} key={key}/>
-                })}
-            </div>};
+                ))}
+            </div>}
         </div>
     )
 };
